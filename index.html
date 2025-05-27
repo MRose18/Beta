@@ -1,32 +1,214 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="img/flowers.png" type="image/x-icon">
-    <title>Flowers</title>
+    <title>Feliz Aniversario</title>
+
+    <body class="container">
+    <audio src="sound/Viaje De Amor.mp3" autoplay></audio>
+    <div id="lyrics">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #f3020a, #4070f2, #f3083e, #226ef1);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            color: #fff;
+            text-align: center;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            transform: scale(0.9);
+            opacity: 0;
+            animation: appear 1.5s forwards 0.5s;
+        }
+
+        @keyframes appear {
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        p {
+            font-size: 1.5em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .heart {
+            position: absolute;
+            pointer-events: none;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #fff;
+            color: #7c3cf2;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            background: #1c20eb;
+            color: white;
+        }
+
+        .hidden-message {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border: 5px solid white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: rotate(-5deg);
+            transition: all 0.3s ease;
+        }
+
+        .photo-frame:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
 </head>
-
 <body>
-    <div class="greetings">
-        <span>H</span>
-        <span>o</span>
-        <span>l</span>
-        <span>a</span>
-        <span>!</span>
-    </div>
-    <div class="description">
-        <span>""</span>
-    </div>
-    <div class="button">
-        <button class="botones">
-            <a href="flower.html" style="color: #fff;">CLICK AQUÍ</a>
-        </button>
+    <div class="container">
+        <h1>Feliz Aniversario ❤</h1>
+        
+        <div class="photo-frame">
+            <!-- Reemplaza con la URL de tu foto -->
+            <img src="img/Imagen.jpg"Nuestra foto">
+        </div>
+        
+        <p>Hoy celebramos <span id="years-together">V</span> Mes juntos, llenos de amor y momentos inolvidables.</p>
+        <p>Eres lo mejor que me ha pasado y quiero que lo sepas.</p>
+        
+        <a href="#" class="btn" id="surprise-btn">Haz clic para una sorpresa</a>
+        
+        <div class="hidden-message" id="hidden-message">
+            <h2>Para la persona más especial:</h2>
+            <p>Cada día a tu lado es un regalo. Gracias por tu amor, tu paciencia y por hacerme tan feliz.</p>
+            <p>Prometo seguir haciendo sonreír cada día de nuestra vida juntos.</p>
+            <p>Te amo más que ayer, pero menos que mañana.</p>
+            <p>❤</p>
+        </div>
     </div>
 
+    <script>
+        // Crear corazones flotantes
+        function createHearts() {
+            for (let i = 0; i < 30; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤';
+                heart.classList.add('heart');
+                
+                // Posición aleatoria
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * 100 + 'vh';
+                
+                // Tamaño aleatorio
+                const size = Math.random() * 2 + 1;
+                heart.style.fontSize = size + 'em';
+                
+                // Duración de animación aleatoria
+                heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                
+                document.body.appendChild(heart);
+            }
+        }
+        
+        //años juntos
+        function updateYears() {
+            // colocar la fecha del aniversario
+            const anniversaryDate = new Date('2015-06-15');
+            const today = new Date();
+            const years = today.getFullYear() - anniversaryDate.getFullYear();
+            
+            // Ajustar si aún no ha pasado la fecha este año
+            if (today.getMonth() < anniversaryDate.getMonth() || 
+               (today.getMonth() === anniversaryDate.getMonth() && today.getDate() < anniversaryDate.getDate())) {
+                years--;
+            }
+            
+            document.getElementById('years-together').textContent = years;
+        }
+        
+        // Mostrar mensaje oculto
+        document.getElementById('surprise-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('hidden-message').style.display = 'block';
+            createHearts();
+            this.style.display = 'none';
+        });
+        
+        // Inicializar
+        window.onload = function() {
+            updateYears();
+            createHearts();
+        };
+    </script>
 </body>
-
 </html>
