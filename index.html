@@ -1,32 +1,228 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
+
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="img/flowers.png" type="image/x-icon">
-    <title>Flowers</title>
+    <title>Feliz Aniversario</title>
+
+      <body class="container">
+    <audio src="sound/Viaje De Amor.mp3" autoplay></audio>
+    <div id="lyrics">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #3b2fe1, #e70707, #3422fb, #740202);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            font-family: 'Curlz MT', sans-serif;
+            overflow-x: hidden;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+
+        @keyframes appear {
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        p {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .heart {
+            position: absolute;
+            pointer-events: none;
+            animation: float 4s ease-in-out infinite;
+            font-size: clamp(1rem, 3vw, 2rem);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: #fff;
+            color: #ff6b6b;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 10px 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .hidden-message {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .photo-frame {
+            width: clamp(200px, 40vw, 200px);
+            height: clamp(200px, 40vw, 200px);
+            margin: 20px auto;
+            border: 5px solid white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: rotate(-5deg);
+            transition: all 0.3s ease;
+        }
+
+        .photo-frame:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Ajustes para pantallas muy pequeñas */
+        @media (max-width: 360px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            p {
+                font-size: 1rem;
+            }
+            .btn {
+                padding: 8px 20px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <div class="greetings">
-        <span>H</span>
-        <span>o</span>
-        <span>l</span>
-        <span>a</span>
-        <span>!</span>
-    </div>
-    <div class="description">
-        <span>""</span>
-    </div>
-    <div class="button">
-        <button class="botones">
-            <a href="flower.html" style="color: #fff;">CLICK AQUÍ</a>
-        </button>
-    </div>
+    <div class="container">
+        <h1>Feliz Aniversario ❤</h1>
+        
+        <div class="photo-frame">
+            <!-- Reemplaza con la URL de tu foto -->
+            <img src="img/Imagen.jpg"Nuestra foto">
+        </div>
+        
+        <p>Hoy celebramos <span id="years-together">V</span> meces juntos, llenos de amor y momentos inolvidables.</p>
+        <p>Eres lo mejor que me ha pasado y quiero que lo sepas.</p>
+        
+        <a href="#" class="btn" id="surprise-btn">Haz clic para una sorpresa</a>
+        
+        <div class="hidden-message" id="hidden-message">
+            <h2>Para la persona más especial:</h2>
+            <p>Cada día a tu lado es un regalo. Gracias por tu amor, tu paciencia y por hacerme tan feliz.</p>
+            <p>Prometo seguir haciendo sonreír cada día de nuestra vida juntos.</p>
+            <p>Te amo más que ayer, pero menos que mañana.</p>
+            <p>❤</p>
+        </div>
 
+    <script>
+        // Crear corazones flotantes
+        function createHearts() {
+            for (let i = 0; i < 50; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤';
+                heart.classList.add('heart');
+                
+                // Posición aleatoria
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * 100 + 'vh';
+                
+                // Tamaño aleatorio
+                const size = Math.random() * 2 + 0.5;
+                heart.style.fontSize = size + 'em';
+                
+                // Duración de animación aleatoria
+                heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                
+                document.body.appendChild(heart);
+            }
+        }
+        
+        // Mostrar mensaje oculto
+        document.getElementById('surprise-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('hidden-message').style.display = 'block';
+            createHearts();
+            this.style.display = 'none';
+            
+            // Hacer scroll suave al mensaje
+            document.getElementById('hidden-message').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+        
+        // Inicializar
+        window.onload = function() {
+            updateYears();
+            
+            // Crear menos corazones en móviles para mejor rendimiento
+            if (window.innerWidth <= 768) {
+                for (let i = 0; i < 8; i++) {
+                    createHearts();
+                }
+            } else {
+                createHearts();
+            }
+        };
+        
+
+        // Redimensionar corazones al cambiar tamaño de pantalla
+        window.addEventListener('resize', function() {
+            const hearts = document.querySelectorAll('.heart');
+            hearts.forEach(heart => {
+                const size = Math.random() * 2 + 0.5;
+                heart.style.fontSize = size + 'em';
+            });
+        });
+    </script>
 </body>
-
 </html>
